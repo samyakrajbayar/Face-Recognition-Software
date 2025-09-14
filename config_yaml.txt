@@ -1,0 +1,95 @@
+# Advanced Face Recognition Software Configuration
+# Copy this file to config.yaml and modify as needed
+
+# Core Recognition Settings
+recognition:
+  tolerance: 0.6              # Recognition sensitivity (0.0-1.0)
+  model: "hog"               # Face detection model: "hog" or "cnn"
+  max_faces_per_frame: 10    # Maximum faces to process per frame
+  face_detection_scale: 0.25 # Scale factor for faster detection
+  
+# Database Configuration
+database:
+  type: "sqlite"             # Database type: "sqlite", "json", "pickle"
+  path: "faces.db"          # Database file path
+  backup_enabled: true       # Enable automatic backups
+  backup_interval: 86400     # Backup interval in seconds (24 hours)
+  
+# Video/Camera Settings
+video:
+  camera_index: 0            # Default camera index
+  frame_width: 640           # Video frame width
+  frame_height: 480          # Video frame height
+  fps: 30                    # Frames per second
+  buffer_size: 1             # Video buffer size
+  
+# Performance Settings
+performance:
+  process_every_n_frames: 1  # Process every N frames (1 = every frame)
+  resize_factor: 0.25        # Resize factor for processing
+  use_gpu: false             # Enable GPU acceleration (requires setup)
+  max_threads: 4             # Maximum processing threads
+  
+# Attendance Logging
+attendance:
+  enabled: false             # Enable attendance logging
+  log_file: "attendance.csv" # Attendance log file path
+  prevent_duplicates: true   # Prevent duplicate entries same day
+  custom_fields: []          # Additional fields to log
+  
+# GUI Settings
+gui:
+  theme: "default"           # GUI theme
+  window_size: "800x600"     # Default window size
+  video_display_size: "640x480" # Video display size
+  auto_save_settings: true   # Auto-save GUI settings
+  
+# Security Settings
+security:
+  encrypt_database: false    # Encrypt face encodings (requires key)
+  require_confidence: 70.0   # Minimum confidence for recognition
+  max_unknown_threshold: 10  # Alert after N unknown faces
+  
+# Notifications
+notifications:
+  enabled: false             # Enable notifications
+  webhook_url: ""            # Webhook URL for notifications
+  email_enabled: false       # Enable email notifications
+  email_smtp: ""             # SMTP server
+  email_from: ""             # From email address
+  email_to: []               # To email addresses
+  
+# Logging
+logging:
+  level: "INFO"              # Log level: DEBUG, INFO, WARNING, ERROR
+  file: "face_recognition.log" # Log file path
+  max_file_size: 10485760    # Max log file size (10MB)
+  backup_count: 5            # Number of log backups
+  
+# Export Settings
+export:
+  image_format: "jpg"        # Output image format
+  video_codec: "mp4v"        # Output video codec
+  quality: 95                # Output quality (1-100)
+  
+# Advanced Features
+advanced:
+  mask_detection: false      # Enable mask detection
+  age_estimation: false      # Enable age estimation
+  emotion_recognition: false # Enable emotion recognition
+  face_quality_check: true   # Check face image quality
+  
+# API Settings (if using web API)
+api:
+  enabled: false             # Enable REST API
+  host: "0.0.0.0"           # API host
+  port: 5000                 # API port
+  cors_enabled: true         # Enable CORS
+  auth_required: false       # Require authentication
+  
+# Backup Settings
+backup:
+  enabled: true              # Enable backups
+  directory: "backups/"      # Backup directory
+  retention_days: 30         # Keep backups for N days
+  compress: true             # Compress backup files

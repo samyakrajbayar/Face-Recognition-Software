@@ -1,0 +1,81 @@
+# Face Recognition System Configuration
+# =====================================
+
+# Recognition settings
+recognition:
+  tolerance: 0.6              # Lower = more strict, higher = more lenient (0.1-1.0)
+  model: 'hog'                # 'hog' for CPU, 'cnn' for GPU (more accurate but slower)
+  max_faces_per_frame: 10     # Maximum number of faces to process per frame
+  face_detection_scale: 0.25  # Scale factor for face detection (smaller = faster)
+  num_jitters: 1              # Number of times to re-sample face for encoding
+  upsample_times: 1           # How many times to upsample image for face detection
+
+# Database configuration
+database:
+  type: 'sqlite'              # Database type (currently only sqlite supported)
+  path: 'faces.db'            # Path to database file
+  backup_enabled: true        # Enable automatic backups
+  backup_interval: 86400      # Backup interval in seconds (24 hours)
+  max_backup_files: 5         # Maximum number of backup files to keep
+
+# Video capture settings
+video:
+  camera_index: 0             # Camera index (0 = default camera)
+  frame_width: 640            # Video frame width
+  frame_height: 480           # Video frame height
+  fps: 30                     # Target FPS
+  buffer_size: 1              # Camera buffer size (smaller = less delay)
+  display_fps: true           # Show FPS counter on video
+
+# Performance optimization
+performance:
+  process_every_n_frames: 1   # Process every N frames (higher = faster but less accurate)
+  resize_factor: 0.25         # Resize factor for processing (smaller = faster)
+  use_gpu: false              # Use GPU acceleration (requires CUDA and dlib with GPU)
+  max_threads: 4              # Maximum number of processing threads
+  enable_optimization: true   # Enable various performance optimizations
+
+# Attendance logging
+attendance:
+  enabled: false              # Enable attendance logging
+  log_file: 'attendance.csv'  # Path to attendance log file
+  prevent_duplicates: true    # Prevent duplicate entries within threshold
+  duplicate_threshold: 300    # Minimum seconds between duplicate entries
+  custom_fields: []           # Additional fields to log
+    # - 'location'
+    # - 'temperature'
+  export_formats:             # Supported export formats
+    - 'csv'
+    - 'json'
+
+# GUI settings
+gui:
+  theme: 'default'            # GUI theme
+  window_size: '1000x700'     # Default window size
+  video_display_size: '640x480' # Video display size
+  auto_save_settings: true    # Automatically save settings on exit
+  show_confidence: true       # Show confidence percentages
+  show_fps: true              # Show FPS counter
+
+# Security settings
+security:
+  encrypt_database: false     # Encrypt database (not yet implemented)
+  require_confidence: 70.0    # Minimum confidence for positive identification
+  max_unknown_threshold: 10   # Max unknown faces before alert
+  enable_face_tracking: true  # Enable face tracking across frames
+  alert_on_unknown: false     # Alert when unknown face detected
+
+# Logging configuration
+logging:
+  level: 'INFO'               # Logging level (DEBUG, INFO, WARNING, ERROR)
+  file: 'face_recognition.log' # Log file path
+  max_file_size: 10485760     # Max log file size in bytes (10MB)
+  backup_count: 5             # Number of log file backups to keep
+  log_detections: true        # Log face detection events
+
+# Export settings
+export:
+  image_format: 'jpg'         # Default image format for exports
+  video_codec: 'mp4v'         # Video codec for processed videos
+  compression_quality: 85     # Image compression quality (1-100)
+  include_metadata: true      # Include metadata in exports
